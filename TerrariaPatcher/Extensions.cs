@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Reflection;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
@@ -20,9 +21,7 @@ namespace TerrariaPatcher
 		{
 			var body = method.Body;
 			var processor = body.GetILProcessor();
-			var target = body.Instructions[0];
-
-			processor.InsertBefore(target, Instruction.Create(OpCodes.Ret));
+			processor.InsertBefore(body.Instructions[0], Instruction.Create(OpCodes.Ret));
 		}
 	}
 }
